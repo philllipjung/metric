@@ -1,0 +1,24 @@
+# Binaries
+exporter_cr_v1
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Swap files
+*.swp
+*.swo
+*~
+
+# Test files
+check_spark_cr.sh
+/tmp/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db

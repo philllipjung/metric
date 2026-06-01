@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spark-cr-exporter
+  namespace: default
+  labels:
+    app: spark-cr-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spark-cr-exporter
+  template:
+    metadata:
+      labels:
+        app: spark-cr-exporter
+    spec:
+      containers:
+      - name: exporter
+        image: spark-cr-exporter:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9302
+          name: metrics
+        env:
+        - name: PORT
+          value: "9302"
+        - name: WATCH_NAMESPACES
+          value: "default"
+        resources:
+          requests:
+            cpu: "2"
+            memory: "512Mi"
+          limits:
+            cpu: "2"
+            memory: "1Gi"
